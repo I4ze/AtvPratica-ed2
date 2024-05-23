@@ -1,0 +1,8 @@
+1. Deve implementar hashing, árvore avl e rubro-negra
+2. hashing deve utilizar flag para controle da ocupação de espaço.
+3. hash deve ter tamanho inicial fixo mas aumentar qnd atingir %x espaços ocupados. Deve-se copiar para um novo dicionário e remoção do antigo.
+4. Deve permitir escolher entre tratamento de colisões por tentativa linear ou quadrática.
+5. A arvore avl deverá ser uma versão adaptada da arvore avl habitual que permite controlar o fator de balanceamento para realizar as rotações, permitindo D diferença de altura entre as sub-arvores.
+6. deve permitir buscar palavras em um indice (uma das estruturas) dada uma palavra e um indice. Retornar onde a palavra ocorre no texto.
+7. Deve permitir a remoção de palavras do índice.
+8. Deve imprimir  índice(uma das estruturas).
