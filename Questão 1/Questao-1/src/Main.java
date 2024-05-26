@@ -1,17 +1,45 @@
-// Press Shift twice to open the Search Everywhere dialog and type `show whitespaces`,
-// then press Enter. You can now see whitespace characters in your code.
+import Estruturas.ArvoreRB;
+import Estruturas.Palavra;
+import Estruturas.RBNode;
+
 public class Main {
     public static void main(String[] args) {
-        // Press Alt+Enter with your caret at the highlighted text to see how
-        // IntelliJ IDEA suggests fixing it.
-        System.out.print("Hello and welcome!");
+        Palavra p1 = new Palavra("AWAAAAAAAA", 1);
+        Palavra p2 = new Palavra("awa2", 1);
+        Palavra p3 = new Palavra("awa3", 2);
+        Palavra p4 = new Palavra("awa4", 3);
+        ArvoreRB<Palavra> arvore = new ArvoreRB<Palavra>();
+        arvore.adiciona(p1);
+        exibirEmOrdem(arvore);
+        System.out.println();
 
-        // Press Shift+F10 or click the green arrow button in the gutter to run the code.
-        for (int i = 1; i <= 5; i++) {
+        arvore.adiciona(p2);
+        exibirEmOrdem(arvore);
+        System.out.println();
 
-            // Press Shift+F9 to start debugging your code. We have set one breakpoint
-            // for you, but you can always add more by pressing Ctrl+F8.
-            System.out.println("i = " + i);
+        arvore.adiciona(p3);
+        exibirEmOrdem(arvore);
+        System.out.println();
+
+        arvore.adiciona(p4);
+        exibirEmOrdem(arvore);
+        System.out.println();
+        System.out.println(arvore.encontra(p2).v.toString()+arvore.passos);
+        System.out.println(arvore.encontra(p3).v.toString()+arvore.passos);
+
+    }
+
+    public static void exibirEmOrdem(ArvoreRB<Palavra> arvore) {
+        exibirEmOrdem(arvore.raiz);
+    }
+
+    private static void exibirEmOrdem(RBNode<Palavra> node) {
+        if (node != null && !node.equals(ArvoreRB.nil)) {
+            exibirEmOrdem(node.esq);
+            if (node.v != null) {
+                System.out.println(node.v.toString());
+            }
+            exibirEmOrdem(node.dir);
         }
     }
 }
