@@ -1,35 +1,31 @@
-import Estruturas.ArvoreRB;
-import Estruturas.Palavra;
-import Estruturas.RBNode;
+import Estruturas.*;
 
 public class Main {
     public static void main(String[] args) {
-        Palavra p1 = new Palavra("AWAAAAAAAA", 1);
-        Palavra p2 = new Palavra("awa2", 1);
-        Palavra p3 = new Palavra("awa3", 2);
-        Palavra p4 = new Palavra("awa4", 3);
-        ArvoreRB<Palavra> arvore = new ArvoreRB<Palavra>();
-        arvore.adiciona(p1);
-        exibirEmOrdem(arvore);
-        System.out.println();
-
-        arvore.adiciona(p2);
-        exibirEmOrdem(arvore);
-        System.out.println();
-
-        arvore.adiciona(p3);
-        exibirEmOrdem(arvore);
-        System.out.println();
-
-        arvore.adiciona(p4);
-        exibirEmOrdem(arvore);
-        System.out.println();
-        System.out.println(arvore.encontra(p2).v.toString()+arvore.passos);
-        System.out.println(arvore.encontra(p3).v.toString()+arvore.passos);
+        Palavra p1 = new Palavra("AWAAAAAAAA", 1, 12);
+        Palavra p2 = new Palavra("awa2", 1, 13);
+        Palavra p3 = new Palavra("awa3", 2, 14);
+        Palavra p4 = new Palavra("awa4", 3, 15);
+        Palavra p5 = new Palavra("awa5", 3, 17);
+        Palavra p6 = new Palavra("awa6", 3, 18);
+        Palavra p7 = new Palavra("awa7", 3, 20);
 
     }
 
-    public static void exibirEmOrdem(ArvoreRB<Palavra> arvore) {
+    public static void exibirEmOrdemAVL(ArvoreAVL<Palavra> arvore) {
+        exibirEmOrdemAVL(arvore.getRoot());
+    }
+    private static void exibirEmOrdemAVL(AVLNode<Palavra> node) {
+        if(node != null){
+            exibirEmOrdemAVL(node.getLeft());
+            if(node.getKey() != null){
+                System.out.println(node.getKey().toString());
+            }
+            exibirEmOrdemAVL(node.getRight());
+        }
+    }
+
+    public static void exibirEmOrdemRB(ArvoreRB<Palavra> arvore) {
         exibirEmOrdem(arvore.raiz);
     }
 

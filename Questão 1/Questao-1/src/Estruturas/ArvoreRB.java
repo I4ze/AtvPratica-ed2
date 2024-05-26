@@ -48,15 +48,15 @@ public class ArvoreRB<T extends Comparable<T>> {
 
     public void adiciona(T n) {
         if (this.raiz.equals(ArvoreRB.nil)) {
-            this.raiz = new RBNode<T>(n, false);
+            this.raiz = new RBNode<>(n, false);
         } else {
             RBNode<T> a = this.encontra(n);
             if (n.compareTo(a.v) < 0) {
-                a.esq = new RBNode<T>(n, true);
+                a.esq = new RBNode<>(n, true);
                 a.esq.p = a;
                 this.fixaadicao(a.esq);
             } else if (n.compareTo(a.v) > 0) {
-                a.dir = new RBNode<T>(n, true);
+                a.dir = new RBNode<>(n, true);
                 a.dir.p = a;
                 this.fixaadicao(a.dir);
             }
@@ -209,11 +209,22 @@ public class ArvoreRB<T extends Comparable<T>> {
         n.cor = false;
     }
 
-    public RBNode<T> encontra(T n) {
+    private RBNode<T> encontra(T n) {
         ContaPassos contador = new ContaPassos();
         RBNode<T> retorno = this.raiz.encontra(n, contador);
         this.passos = contador.getPassos();
         return retorno;
+    }
+
+    public T busca(T n){
+        return busca(this.raiz, n);
+    }
+
+    private T busca(RBNode<T> node, T key){
+        if(node == null || node.v == null) return null;
+        else if(node.v.equals(key)) return node.v;
+        else if(node.v.compareTo(key)<0) return busca(node.dir, key);
+        else return busca(node.esq, key);
     }
 
     String color(boolean flag) {
