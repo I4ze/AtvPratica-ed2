@@ -3,19 +3,34 @@ package Estruturas;
 public class ArvoreAVL<T extends Comparable<T>> {
     private AVLNode<T> root;
     private Integer fb = 2;
+    private Integer passos;
 
     public T search(T key) {
+        ContaPassos contador = new ContaPassos();
         AVLNode<T> node = root;
-        node = search(node, key);
+        node = search(node, key, contador);
         if (node == null) return null;
         else return node.getKey();
     }
 
-    private AVLNode<T> search(AVLNode<T> node, T key) {
-        if (node == null) return null;
-        else if (node.getKey().equals(key)) return node;
-        else if (node.getKey().compareTo(key) < 0) return search(node.getRight(), key);
-        else return search(node.getLeft(), key);
+    private AVLNode<T> search(AVLNode<T> node, T key, ContaPassos contador) {
+        if (node == null) {
+            contador.incremento(1);//incremento da primeira verificação
+            return null;
+        }
+        else if (node.getKey().equals(key)) {
+            contador.incremento(2);//incremento da primeira verificação e da verificação do bloco atual
+            return node;
+        }
+        else if (node.getKey().compareTo(key) < 0) {
+            contador.incremento(4);//incremento das 2 primeiras verificações,
+                                        // a verificação atual e a movimentação do nó atual para o da direita
+            return search(node.getRight(), key, contador);
+        }
+        else {
+            contador.incremento(4); //Incremento das verificações anteriores e a movimentação para o nó da esquerda
+            return search(node.getLeft(), key, contador);
+        }
     }
 
     public AVLNode<T> getRoot() {
